@@ -19,11 +19,13 @@ function DataFetching ({ endpoint }) {
         <div>
             <ul>
                 {
-                    apiResponse.map((response) => (
-                        <li key={response.timestamp}>
-                            {response.timestamp} - {response.amount}
-                        </li>
-                    ))
+                    apiResponse.map(
+                        (response) => (
+                            <li key={response.timestamp}>
+                                {response.timestamp} - {response.amount}
+                            </li>
+                        )
+                    )
                 }
             </ul>
         </div>
