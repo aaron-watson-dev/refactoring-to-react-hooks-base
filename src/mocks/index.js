@@ -1,3 +1,5 @@
+import {Server} from "miragejs";
+
 export let sales;
 export let subscriptions;
 
@@ -22,5 +24,17 @@ if (process.env.NODE_ENV === "development") {
     mean: 9,
     variance: 5,
     decimalDigits: 0
+  });
+
+  new Server({
+    routes() {
+      this.namespace = "api";
+      this.get("/Subscriptions", () => {
+        return subscriptions;
+      });
+      this.get("/Sales", () => {
+        return sales;
+      });
+    }
   });
 }
