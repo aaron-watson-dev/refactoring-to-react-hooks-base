@@ -2,7 +2,8 @@ import React from "react";
 import {useState, useEffect} from "react";
 
 function DataFetching (props) {
-    const [apiResponse, setApiResponse] = useState(null)
+    const [apiResponse, setApiResponse] = useState([]);
+
     useEffect(() => {
         fetch("/api/" + props.endpoint)
             .then(response => {
