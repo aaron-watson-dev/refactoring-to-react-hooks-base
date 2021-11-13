@@ -6,10 +6,11 @@ import {sales} from "../../mocks";
 import DataFetching from "../../common/components/Fetching"
 
 const DataFetchingContainer = () => {
-    const optionsForSelect = [
-        { value: "Sales", label: "Sales" },
-        { value: "Subscriptions", label: "Subscriptions" }
-    ]
+    let optionsForSelect;
+    optionsForSelect = [
+        {value: "Sales", label: "Sales"},
+        {value: "Subscriptions", label: "Subscriptions"}
+    ];
 
     const [selectedEndpoint, setSelectedEndpoint] = useState(null);
 
