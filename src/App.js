@@ -13,16 +13,6 @@ function chartSelection(props) {
 
 }
 
-new Server({
-   routes() {
-      this.namespace = "api";
-      this.get("/Subscriptions", () => {
-         return subscriptions;
-      });
-      this.get("/Sales", () => {
-         return sales;
-      });
-   }
-});
+
 
 export default App;
