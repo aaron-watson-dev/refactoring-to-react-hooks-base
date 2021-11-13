@@ -5,11 +5,13 @@ function DataFetching (props) {
     const [apiResponse, setApiResponse] = useState([]);
 
     useEffect(() => {
-        fetch("/api/" + props.endpoint)
+        fetch(`${process.env.REACT_APP_BASE_URL}/${props.endpoint}`)
             .then(response => {
                 if (!response.ok) throw Error(response.statusText);
                 return response.json()
-            }).then(json=> {setApiResponse(json); console.log(apiResponse);});
+            }).then(json=> {
+                setApiResponse(json);
+            });
     }, [props.endpoint]);
 
     return (
