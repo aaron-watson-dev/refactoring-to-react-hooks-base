@@ -1,9 +1,16 @@
-import React from "react";
+import React, {useReducer} from "react";
 import Select from "react-select"
-import {useState} from "react";
 import {subscriptions} from "../../mocks";
 import {sales} from "../../mocks";
 import DataFetching from "../../common/components/Fetching"
+import * as Constants from "../../common/constants";
+import Loading from "../../common/components/Loading";
+import DataReducer from "../../common/components/DataReducer";
+
+const initialState = {
+    currentState: null,
+    selectedEndpoint: null
+};
 
 const DataFetchingContainer = () => {
     let optionsForSelect;
@@ -12,12 +19,30 @@ const DataFetchingContainer = () => {
         {value: "Subscriptions", label: "Subscriptions"}
     ];
 
-    const [selectedEndpoint, setSelectedEndpoint] = useState(null);
+    const [state, dispatch] = useReducer(DataReducer, initialState);
 
     function handleSelectChange(e) {
-        setSelectedEndpoint(e.value);
-        console.log("Data Here")
+        dispatch(
+            {
+                type: Constants.DATA_FETCHING_STATUS.LOADING,
+                payload: e.value
+            }
+        );
     }
+
+    const renderData = () => {
+        console.log(state.currentState);
+        switch (state.currentState) {
+            case Constants.DATA_FETCHING_STATUS.LOADING:
+                return <Loading />;
+            case Constants.DATA_FETCHING_STATUS.LOADED:
+                return <DataFetching endpoint={state.selectedEndpoint} />;
+            case Constants.DATA_FETCHING_STATUS.ERROR:
+                return "Sorry - there was an error loading your data!";
+            default:
+                return "Please select an option";
+        }
+    };
 
     return (
         <>
@@ -27,7 +52,7 @@ const DataFetchingContainer = () => {
                     options={optionsForSelect}
             />
 
-            {selectedEndpoint ?  <DataFetching endpoint={selectedEndpoint} /> : null }
+            { renderData() }
         </>
     )
 };

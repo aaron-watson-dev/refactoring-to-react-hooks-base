@@ -1,9 +1,11 @@
 import * as Constants from "../constants"
+
 export default function DataReducer (state, action) {
    switch(action.type)  {
        case Constants.DATA_FETCHING_STATUS.LOADING:
            return {
               ...state,
+               selectedEndpoint: action.payload,
                currentState: Constants.DATA_FETCHING_STATUS.LOADING
            };
        case Constants.DATA_FETCHING_STATUS.LOADED:
