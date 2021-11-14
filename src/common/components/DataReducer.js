@@ -3,8 +3,6 @@ import * as Constants from "../constants"
 export default function DataReducer (state, action) {
    switch(action.type)  {
        case "SET-RESPONSE":
-           console.log("SET-RESPONSE");
-           console.log(action.payload);
            return {
                ...state,
                currentData: action.payload,
