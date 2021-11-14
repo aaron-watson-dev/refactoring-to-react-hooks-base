@@ -1,9 +1,19 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import {useReducer, useState, useEffect} from "react";
 import PropTypes from 'prop-types';
+import * as Constants from "../constants";
+import Loading from "../components/Loading";
+import DataList from "../components/DataList";
+
+import DataReducer from "./DataReducer";
+const initialState = {
+    currentState: Constants.DATA_FETCHING_STATUS.LOADED,
+};
 
 function DataFetching ({ endpoint }) {
-    const [apiResponse, setApiResponse] = useState([]);
+    const [responseData, setResponseData] = useState([]);
+
+    const [state, dispatch] = useReducer(DataReducer, initialState);
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_BASE_URL}/${endpoint}`)
@@ -11,24 +21,12 @@ function DataFetching ({ endpoint }) {
                 if (!response.ok) throw Error(response.statusText);
                 return response.json()
             }).then(json=> {
-                setApiResponse(json);
+                setResponseData(json);
             });
     }, [endpoint]);
 
     return (
-        <div>
-            <ul>
-                {
-                    apiResponse.map(
-                        (response) => (
-                            <li key={response.timestamp}>
-                                {response.timestamp} - {response.amount}
-                            </li>
-                        )
-                    )
-                }
-            </ul>
-        </div>
+        <DataList listData={responseData} />
     );
 }
 
