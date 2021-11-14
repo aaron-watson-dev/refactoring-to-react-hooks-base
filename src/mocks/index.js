@@ -31,10 +31,11 @@ if (process.env.NODE_ENV === "development") {
       this.namespace = "api";
       this.get("/Subscriptions", () => {
         return subscriptions;
-      });
+      }, {timing: 4000});
       this.get("/Sales", () => {
         return sales;
-      });
+      }, {timing: 4000}
+      );
     }
   });
 }
