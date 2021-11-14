@@ -5,7 +5,7 @@ function DataList({listData}) {
     return (
         <ul>
             {
-                listData.map(
+                listData && listData.map(
                     (data) => (
                         <li key={data.timestamp}>
                             {data.timestamp} - {data.amount}

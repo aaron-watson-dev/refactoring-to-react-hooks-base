@@ -1,4 +1,4 @@
-import {Server} from "miragejs";
+import {Server, Response} from "miragejs";
 
 export let sales;
 export let subscriptions;
@@ -29,12 +29,19 @@ if (process.env.NODE_ENV === "development") {
   new Server({
     routes() {
       this.namespace = "api";
-      this.get("/Subscriptions", () => {
-        return subscriptions;
-      }, {timing: 4000});
-      this.get("/Sales", () => {
-        return sales;
-      }, {timing: 4000}
+      this.get("/Subscriptions",
+         () => { return subscriptions; },
+         { timing: 1000 }
+      );
+
+      this.get("/Sales",
+        () => { return sales; },
+        { timing: 1000 }
+      );
+
+      this.get("/Error",
+        () => { return new Response(400) },
+        { timing: 1000 }
       );
     }
   });

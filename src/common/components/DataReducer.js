@@ -2,23 +2,25 @@ import * as Constants from "../constants"
 
 export default function DataReducer (state, action) {
    switch(action.type)  {
-       case Constants.DATA_FETCHING_STATUS.LOADING:
+       case "SET-RESPONSE":
+           console.log("SET-RESPONSE");
+           console.log(action.payload);
            return {
-              ...state,
-               selectedEndpoint: action.payload,
-               currentState: Constants.DATA_FETCHING_STATUS.LOADING
-           };
-       case Constants.DATA_FETCHING_STATUS.LOADED:
-           return  {
-              ...state,
+               ...state,
+               currentData: action.payload,
                currentState: Constants.DATA_FETCHING_STATUS.LOADED
            };
-       case Constants.DATA_FETCHING_STATUS.ERROR:
+       case "ERROR":
            return {
                ...state,
                currentState: Constants.DATA_FETCHING_STATUS.ERROR
            };
-       default:
+       case "LOADING":
+           return {
+               ...state,
+               currentState: Constants.DATA_FETCHING_STATUS.LOADING
+           };
+      default:
            return state;
    }
 }
