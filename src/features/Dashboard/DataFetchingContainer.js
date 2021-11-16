@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 import React, {useState} from "react";
 import Select from "react-select"
 import {subscriptions} from "../../mocks";
@@ -15,7 +16,7 @@ const DataFetchingContainer = () => {
     const [selectedEndpoint, setSelectedEndpoint] = useState(null);
 
     function handleSelectChange(e) {
-        setSelectedEndpoint(e.value)
+        setSelectedEndpoint(e.value);
     }
 
     return (

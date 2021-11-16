@@ -41,7 +41,7 @@ if (process.env.NODE_ENV === "development") {
       );
 
       this.get("/Error",
-        () => { return new Response(400) },
+        () => { return new Response(400); },
         { timing: 1000 }
       );
     }
