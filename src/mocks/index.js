@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 import {Server, Response} from "miragejs";
 
 export let sales;

@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 import * as Constants from "../constants"
 
 export default function DataReducer (state, action) {
