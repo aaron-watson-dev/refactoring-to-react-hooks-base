@@ -1,4 +1,5 @@
-import {Server} from "miragejs";
+/* jshint esversion: 6 */
+import {Server, Response} from "miragejs";
 
 export let sales;
 export let subscriptions;
@@ -29,12 +30,20 @@ if (process.env.NODE_ENV === "development") {
   new Server({
     routes() {
       this.namespace = "api";
-      this.get("/Subscriptions", () => {
-        return subscriptions;
-      });
-      this.get("/Sales", () => {
-        return sales;
-      });
+      this.get("/Subscriptions",
+         () => { return subscriptions; },
+         { timing: 1000 }
+      );
+
+      this.get("/Sales",
+        () => { return sales; },
+        { timing: 1000 }
+      );
+
+      this.get("/Error",
+        () => { return new Response(400); },
+        { timing: 1000 }
+      );
     }
   });
 }
