@@ -8,7 +8,7 @@ export default function DataReducer (state, action) {
                ...state,
                currentData: action.payload,
                currentState: Constants.DATA_FETCHING_STATUS.LOADED
-           }
+           };
        }
        case "ERROR": {
            return {
