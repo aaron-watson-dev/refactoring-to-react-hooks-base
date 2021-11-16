@@ -1,22 +1,22 @@
-import React from "react";
+/* jshint esversion: 6 */
+import React, {useState} from "react";
 import Select from "react-select"
-import {useState} from "react";
 import {subscriptions} from "../../mocks";
 import {sales} from "../../mocks";
-import DataFetching from "../../common/components/Fetching"
+import DataFetching from "../../common/components/Fetching";
 
 const DataFetchingContainer = () => {
     let optionsForSelect;
     optionsForSelect = [
         {value: "Sales", label: "Sales"},
-        {value: "Subscriptions", label: "Subscriptions"}
+        {value: "Subscriptions", label: "Subscriptions"},
+        {value: "Error", label: "Error"}
     ];
 
     const [selectedEndpoint, setSelectedEndpoint] = useState(null);
 
     function handleSelectChange(e) {
         setSelectedEndpoint(e.value);
-        console.log("Data Here")
     }
 
     return (
@@ -27,9 +27,9 @@ const DataFetchingContainer = () => {
                     options={optionsForSelect}
             />
 
-            {selectedEndpoint ?  <DataFetching endpoint={selectedEndpoint} /> : null }
+            {selectedEndpoint ?  <DataFetching endpoint={selectedEndpoint} /> : "Please select an option"}
         </>
     )
-}
+};
 
 export default DataFetchingContainer;
