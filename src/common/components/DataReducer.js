@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 import * as Constants from "../constants";
 
-export default function DataReducer (state, action) {
+function DataReducer (state, action) {
    switch(action.type)  {
        case "SET-RESPONSE": {
            return {
@@ -26,3 +26,5 @@ export default function DataReducer (state, action) {
            return state;
    }
 }
+
+export default DataReducer;
